@@ -5,17 +5,18 @@ const verify=require('../middlewares/verifytoken');
 
 
 //user registration and login APIs
-router.get('/user/all',web2.get_all)
 
-router.post('/user/register',web2.user_register)
+router.get('/user/all',web2.get_all);
 
-router.patch('/user/verify',verify,web2.verify_otp)
+router.post('/user/register',web2.user_register);
 
-router.post('/user/login',verify,web2.user_login)
+router.patch('/user/verify',web2.verify_otp);
 
-router.patch('/user/resend_otp',web2.resend_otp)
+router.post('/user/login',web2.user_login);
 
-router.get('/users/logout',verify,web2.user_logout)
+router.patch('/user/resend_otp',web2.resend_otp);
+
+router.get('/users/logout',verify,web2.user_logout);
 
 
 module.exports=router

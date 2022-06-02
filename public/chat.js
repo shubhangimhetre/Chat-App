@@ -6,8 +6,7 @@ var output=document.getElementById("output");
 var feedback=document.getElementById("feedback");
 
 btn.addEventListener("click",function(){
-    socket.emit('click',{message_from:handle.value,message:message.value})
-    handle.value=""
+    socket.emit('click',{message_from:handle.value,message:message.value})  
     message.value=""
 })
 
@@ -16,7 +15,7 @@ message.addEventListener("keypress",function() {
 })
 
 socket.on("chat",function(data){
-    console.log(data)
+
     feedback.innerHTML=""
     output.innerHTML+='<p><strong>'+data.message_from+':</strong>'+data.message +'</p>'
     
