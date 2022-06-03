@@ -37,15 +37,15 @@ exports.user_register = async (req, res) => {
             subject: "Otp for registration is: ",
             html: "<h3>OTP for account verification is </h3>" + "<h1 style='font-weight:bold;'>" + otp + "</h1>"
         };
-        // transporter.sendMail(mailOptions, async (error, info) => {
-        //     if (error) return console.log(error);
-        //     console.log('Message sent: %s', info.messageId);
-        //     console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+        transporter.sendMail(mailOptions, async (error, info) => {
+            if (error) return console.log(error);
+            console.log('Message sent: %s', info.messageId);
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
             const user_data = new users({ "name": req.body.name, "email": req.body.email, "password": hashedPassword, "otp": otp, "activation": false })
             const user1 = await user_data.save()
             res.status(200).json({ message: "Otp is sent to your email.. please verify", data: user1.email })
-        // });
+        });
 
     } catch (err) { res.status(400).send(err) }
 
